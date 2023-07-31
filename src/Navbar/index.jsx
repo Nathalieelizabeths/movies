@@ -10,9 +10,13 @@ const Navbar =() => {
     setSearchValue(event.target.value);
   };
   const handleSearch = async () => {
-    const results = await searchMovies(searchValue);
-    setSearchResults(results.results);
-  };
+    if (searchValue.match(/^[a-zA-Z]+$/)) {
+      const results = await searchMovies(searchValue);
+      setSearchResults(results.results);
+    } else {
+      setSearchResults([]);
+    }
+  };  
   return (
     <div className="Navigation">
       <nav className="nav">
